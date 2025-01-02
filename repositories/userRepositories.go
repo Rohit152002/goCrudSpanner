@@ -12,6 +12,7 @@ type UserRepository interface {
 	GetAll() ([]model.User, error)
 	Delete(id uint) error
 	Update(id uint, user *model.User) (*model.User, error)
+	FindByEmail(email string) (*model.User, error)
 }
 
 type userRepository struct {
@@ -65,4 +66,12 @@ func (r *userRepository) GetAll() ([]model.User, error) {
 		return nil, err
 	}
 	return users, nil
+}
+
+func (r *userRepository) FindByEmail(email string) (*model.User, error) {
+	var user model.User
+	if err := r.db.Where("email = ?", email).First(&user).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
 }

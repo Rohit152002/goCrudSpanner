@@ -2,6 +2,8 @@ package routes
 
 import (
 	"crudspanner/controller"
+	"crudspanner/repositories"
+	"crudspanner/services"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -9,11 +11,19 @@ import (
 )
 
 func UserRoutes(router *gin.Engine, logger *zap.Logger, db *gorm.DB) {
-	userController := controller.UserController{Logger: logger, Db: db}
 
-	router.GET("/:id", userController.GetUserById)
-	router.POST("/", userController.CreateUser)
-	router.GET("/users", userController.GetAllUser)
+	userRepo := repositories.NewUserRepository(db)
+	userService := services.NewUserService(userRepo)
+
+	userController := controller.NewUserController(userService)
+
+	router.GET("/:id", userController.GetUserByID)
+
+	router.POST("/", userController.RegistrationUser)
+
+	router.GET("/users", userController.GetAllUsers)
+
 	router.PUT("/:id", userController.UpdateUser)
+
 	router.DELETE("/:id", userController.DeleteUser)
 }
