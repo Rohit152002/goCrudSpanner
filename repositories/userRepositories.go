@@ -1,25 +1,17 @@
 package repositories
 
 import (
+	"crudspanner/interfaces"
 	"crudspanner/model"
 
 	"gorm.io/gorm"
 )
 
-type UserRepository interface {
-	Create(user *model.User) (*model.User, error)
-	Get(id uint) (*model.User, error)
-	GetAll() ([]model.User, error)
-	Delete(id uint) error
-	Update(id uint, user *model.User) (*model.User, error)
-	FindByEmail(email string) (*model.User, error)
-}
-
 type userRepository struct {
 	db *gorm.DB
 }
 
-func NewUserRepository(db *gorm.DB) UserRepository {
+func NewUserRepository(db *gorm.DB) interfaces.UserRepository {
 	return &userRepository{db: db}
 }
 
@@ -57,6 +49,10 @@ func (r *userRepository) Update(id uint, user *model.User) (*model.User, error) 
 }
 
 func (r *userRepository) Delete(id uint) error {
+	_, err := r.Get(id)
+	if err != nil {
+		return err
+	}
 	return r.db.Delete(&model.User{}, id).Error
 }
 

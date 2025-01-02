@@ -1,0 +1,25 @@
+mode: set
+crudspanner/services/userService.go:23.65,25.2 1 1
+crudspanner/services/userService.go:27.75,29.64 1 1
+crudspanner/services/userService.go:29.64,31.3 1 1
+crudspanner/services/userService.go:33.2,35.25 2 1
+crudspanner/services/userService.go:35.25,37.3 1 1
+crudspanner/services/userService.go:39.2,45.32 6 1
+crudspanner/services/userService.go:48.65,51.16 2 0
+crudspanner/services/userService.go:51.16,53.3 1 0
+crudspanner/services/userService.go:56.2,57.18 2 0
+crudspanner/services/userService.go:60.82,62.16 2 0
+crudspanner/services/userService.go:62.16,64.3 1 0
+crudspanner/services/userService.go:67.2,67.40 1 0
+crudspanner/services/userService.go:67.40,69.3 1 0
+crudspanner/services/userService.go:70.2,70.41 1 0
+crudspanner/services/userService.go:70.41,72.3 1 0
+crudspanner/services/userService.go:73.2,73.43 1 0
+crudspanner/services/userService.go:73.43,75.3 1 0
+crudspanner/services/userService.go:77.2,77.40 1 0
+crudspanner/services/userService.go:80.49,83.16 2 0
+crudspanner/services/userService.go:83.16,85.3 1 0
+crudspanner/services/userService.go:88.2,88.26 1 0
+crudspanner/services/userService.go:91.59,94.16 2 0
+crudspanner/services/userService.go:94.16,96.3 1 0
+crudspanner/services/userService.go:98.2,98.19 1 0

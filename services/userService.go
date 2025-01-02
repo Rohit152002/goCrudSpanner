@@ -2,8 +2,8 @@ package services
 
 import (
 	"crudspanner/config"
+	"crudspanner/interfaces"
 	"crudspanner/model"
-	"crudspanner/repositories"
 	"errors"
 	"strings"
 )
@@ -17,27 +17,25 @@ type UserService interface {
 }
 
 type userService struct {
-	repo repositories.UserRepository
+	repo interfaces.UserRepository
 }
 
-func NewUserService(repo repositories.UserRepository) UserService {
+func NewUserService(repo interfaces.UserRepository) UserService {
 	return &userService{repo: repo}
 }
 
 func (s *userService) Registration(user *model.User) (*model.User, error) {
 
-	// Validate input
 	if user.Name == "" || user.Email == "" || user.Password == "" {
 		return nil, errors.New("name, email, and password are required")
 	}
 
-	// Check for existing user
 	existingUser, _ := s.repo.FindByEmail(user.Email)
+
 	if existingUser != nil {
 		return nil, errors.New("user with this email already exists")
 	}
 
-	// Prepare new user for creation
 	var addUser model.User
 	addUser.Name = strings.TrimSpace(user.Name)
 	addUser.Email = strings.ToLower(strings.TrimSpace(user.Email))
